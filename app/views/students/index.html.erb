@@ -1,0 +1,26 @@
+<div class="container" align='center'>
+    <h1> Student Exam Results </h1>
+</div>
+
+<div class="container" align='center'>
+    <table class="table table-hover">
+        <tr>
+            <th>Student Name</th>
+            <th>Average Score (all exams)</th>
+        </tr>
+        <% @students.each do |student| %>
+            <tr>
+                <td><%= link_to student.firstName + " " + student.lastName, student_path(student)%></td>
+                <% grades = []%>
+                <% student.student_exam_results.each do |result|%>
+                    <% grades << result.marksObtained%>
+                <% end %>
+                <td><%= (grades.sum.to_f / grades.count)%>%</td>
+            </tr>
+        <% end %>
+    </table>
+</div>
+
+
+<!-- Examination Dashboard (/):
+Create a view to show the summed-up score as percentage of each student across all the exams that the student has appeared in.-->
