@@ -1,11 +1,21 @@
-<h1> <%=@student.firstName%> <%=@student.lastName%>'s Exam Scores</h1>
+<div class="container" align='center'>
+    <h1><%=@student.firstName%> <%=@student.lastName%>'s Exam Scores</h1>
+</div>
 
-<ul>
-<% @student.exams.each do |exam| %>
-    <li><%= exam.title %>: <%=  (@student.student_exam_results.where(exam_id: exam.id).first.marksObtained.to_f / exam.totalMarks.to_f * 100).round  %> % </li> 
-<% end %>
-</ul>
-
+<div class="container" align='center'>
+    <table class="table table-hover">
+        <tr>
+            <th>Exam Name</th>
+            <th>Score</th>
+        </tr>
+        <% @student.exams.each do |exam| %>
+            <tr>
+                <td><%= link_to exam.title, exam_path(exam) %></td>
+                <td><%= (@student.student_exam_results.where(exam_id: exam.id).first.marksObtained.to_f / exam.totalMarks.to_f * 100).round  %>%</td>
+            </tr>
+        <% end %>
+    </table>
+</div>
 
 <!-- Student Show View (/students/1):
 Update the student show view to show all the Exams given by the student and the marks obtained as percentage for each exam. -->
