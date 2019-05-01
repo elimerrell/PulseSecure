@@ -1,0 +1,11 @@
+<h1>Exam Show Page</h1>
+
+<ul>
+<% @exam.students.each do |student| %>
+    <li><%= student.firstName + " " + student.lastName %>: <%=  (@exam.student_exam_results.where(student_id: student.id).first.marksObtained.to_f / @exam.totalMarks.to_f * 100).round  %> % </li> 
+<% end %>
+</ul>
+
+<!-- Exam Show View (/exams/1):
+Update the exam show view to show the percentage of mark Obtained achieved by all students in that exam. -->
+ 
