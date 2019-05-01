@@ -11,10 +11,14 @@
         <% @exam.students.each do |student| %>
             <tr>
                 <td><%= link_to student.firstName + " " + student.lastName, student_path(student)%></td>
-                <td><%=(@exam.student_exam_results.where(student_id: student.id).first.marksObtained.to_f / @exam.totalMarks.to_f * 100).round%>%</td>
+                <td><%=(@exam.student_exam_results.find_by(student_id: student.id).marksObtained.to_f / @exam.totalMarks.to_f * 100).round%>%</td>
             </tr>
         <% end %>
     </table>
+</div>
+
+<div class='container' align='center'>
+  <%= link_to '<button type="button" class="btn btn-primary">Dashboard</button>'.html_safe, root_path%>
 </div>
 
 <!-- Exam Show View (/exams/1):
